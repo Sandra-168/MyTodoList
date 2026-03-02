@@ -45,7 +45,16 @@ def search_todos(keyword):
 
 def show_stats():
     """Issue #6：顯示待辦事項統計資訊。"""
-    pass
+    data = load_todos()
+    todos = data["todos"]
+    total = len(todos)
+    done = sum(1 for t in todos if t["done"])
+    pending = total - done
+    rate = (done / total * 100) if total > 0 else 0
+    print(f"總數：{total}")
+    print(f"已完成：{done}")
+    print(f"未完成：{pending}")
+    print(f"完成率：{rate:.1f}%")
 
 
 # === CLI 入口 ===

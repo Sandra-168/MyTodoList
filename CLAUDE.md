@@ -89,6 +89,7 @@ python todo.py done 1
 python todo.py delete 1
 python todo.py search "牛奶"
 python todo.py stats
+python todo.py edit 1 "新內容"
 ```
 
 ## 架構說明
@@ -107,6 +108,7 @@ mark_done(id)     # Issue #3：標記完成
 delete_todo(id)   # Issue #4：刪除待辦事項
 search_todos(kw)  # Issue #5：搜尋功能
 show_stats()      # Issue #6：統計功能
+edit_todo(id, text) # Issue #7：編輯待辦事項
 
 # === CLI 入口 ===
 main()            # 解析 sys.argv 並分派至對應函式

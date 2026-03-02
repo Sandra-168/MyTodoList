@@ -48,6 +48,11 @@ def show_stats():
     pass
 
 
+def edit_todo(todo_id, new_text):
+    """Issue #7：編輯指定 ID 的待辦事項內容。"""
+    pass
+
+
 # === CLI 入口 ===
 
 def main():
@@ -63,6 +68,7 @@ def main():
         print("    python todo.py delete 1")
         print('    python todo.py search "牛奶"')
         print("    python todo.py stats")
+        print('    python todo.py edit 1 "新內容"')
         return
 
     command = args[0]
@@ -81,6 +87,8 @@ def main():
         search_todos(args[1])
     elif command == "stats":
         show_stats()
+    elif command == "edit":
+        edit_todo(int(args[1]), args[2])
     else:
         print(f"未知指令：{command}")
 

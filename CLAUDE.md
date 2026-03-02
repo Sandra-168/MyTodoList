@@ -23,10 +23,49 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 至 https://www.python.org/downloads/ 下載安裝檔，安裝時勾選「Add Python to PATH」。
 
-### 確認安裝成功
-```bash
-python3 --version
+### 安裝 Git（Windows）
+
+至 https://git-scm.com/downloads 下載安裝檔，安裝時選項維持預設即可。
+
+### 安裝 Claude Code（Windows）
+
+開啟 PowerShell 執行：
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
 ```
+
+
+### 確認安裝成功
+
+```bash
+python --version
+git --version
+claude --version
+```
+
+---
+
+## 開始使用
+
+### Clone 專案
+
+```bash
+git clone https://github.com/Sandra-168/MyTodoList.git
+cd MyTodoList
+```
+
+### 開啟 Claude Code
+
+在專案目錄下執行：
+
+```bash
+claude
+```
+
+### 切換 Model 為 Sonnet
+
+進入 Claude Code 後輸入 `/model`，從清單中選擇 Sonnet，按 Enter 確認。
 
 ---
 
@@ -95,3 +134,12 @@ main()            # 解析 sys.argv 並分派至對應函式
 ## 協作分工
 
 每個 Issue 對應 `todo.py` 中的一個函式，認領後只需實作該函式，不影響其他人的工作範圍。
+
+### 如何認領 Issue
+
+1. 到 https://github.com/Sandra-168/MyTodoList/issues 查看所有 Issue
+2. 點進想做的 Issue，在下方留言「我來做」
+3. 開一個新 branch，命名格式為 `feature/issue-1-add-todo`（數字和名稱對應你的 Issue）
+4. 完成後 commit、push，到 GitHub 開 Pull Request
+5. PR 標題格式：`feat: 新增待辦事項 (closes #1)`（#1 換成你的 Issue 編號）
+6. 找隊友 Code Review，通過後 merge 進 main

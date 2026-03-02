@@ -1,0 +1,34 @@
+為了帶大家做一個小練習，讓大家體驗一下用 Claude Code 開發 + GitHub 協作的完整流程！
+
+## 練習主題：MyTodoList 命令列待辦事項工具
+請Sandra在 GitHub 上建好一個 repo，裡面有基本的程式骨架，但有幾個功能還沒實作。
+每個人認領一個 Issue，用 Claude Code 來開發，最後發 PR 合併。
+
+
+## 每個人要做的事：
+1. 到 repo 的 Issues 頁面，挑一個你想做的 Issue，留言說「我來做」
+2. Clone repo，從 main 開一個新 branch，命名像這樣：feature/issue-1-add-todo
+3. 用 Claude Code 來寫你認領的功能
+4. 完成後 commit、push 上去
+5. 到 GitHub 開一個 Pull Request（PR），標題記得帶 Issue 編號，像這樣：feat: 新增待辦事項 (closes #1)
+6. 找另一個隊友幫你 Code Review
+7. Review 過了就 merge 進 main
+
+## 可以認領的 Issue：
+1. 新增待辦事項（add 指令）
+2. 列出所有待辦事項（list 指令）
+3. 標記完成（done 指令）
+4. 刪除待辦事項（delete 指令）
+5. 搜尋功能（search 指令）
+6. 統計功能（stats 指令）
+先搶先贏，一人一個！
+
+這次的重點不是程式寫得多厲害，而是讓大家走過一次 Issue → Branch → PR → Review → Merge 的流程，順便體驗 Claude Code 怎麼幫你寫 code  , 禮拜三下班前麻煩做完, 謝謝
+
+
+## 儲存
+直接 一個 local file , json 檔案, 寫進去 , .gitignore 裡面有把 todos.json 排除掉，這樣每個人本機的測試資料不會互相干擾，也不會被 commit 進 repo。
+
+
+
+

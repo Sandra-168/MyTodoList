@@ -8,7 +8,11 @@ TODOS_FILE = "todos.json"
 
 def load_todos():
     """讀取 todos.json，回傳資料 dict。若檔案不存在則回傳初始結構。"""
-    pass
+    try:
+        with open(TODOS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"next_id": 1, "todos": []}
 
 
 def save_todos(data):
@@ -40,7 +44,14 @@ def delete_todo(todo_id):
 
 def search_todos(keyword):
     """Issue #5：搜尋包含關鍵字的待辦事項。"""
-    pass
+    data = load_todos()
+    results = [t for t in data["todos"] if keyword in t["text"]]
+    if not results:
+        print("找不到符合的待辦事項")
+        return
+    for t in results:
+        status = "✅" if t["done"] else "⬜"
+        print(f"[{t['id']}] {status} {t['text']}")
 
 
 def show_stats():

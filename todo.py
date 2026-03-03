@@ -50,7 +50,14 @@ def show_stats():
 
 def edit_todo(todo_id, new_text):
     """Issue #7：編輯指定 ID 的待辦事項內容。"""
-    pass
+    data = load_todos()
+    for todo in data["todos"]:
+        if todo["id"] == todo_id:
+            todo["text"] = new_text
+            save_todos(data)
+            print(f"[已更新] #{todo_id}：{new_text}")
+            return
+    print(f"找不到 ID 為 {todo_id} 的待辦事項")
 
 
 # === CLI 入口 ===

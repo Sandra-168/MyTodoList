@@ -39,7 +39,7 @@ irm https://claude.ai/install.ps1 | iex
 ### 確認安裝成功
 
 ```bash
-python --version
+python3 --version
 git --version
 claude --version
 ```
@@ -77,19 +77,19 @@ claude
 cd 你的專案路徑\MyTodoList
 
 # 確認環境是否設定成功
-python todo.py hello
+python3 todo.py hello
 
 # 執行程式
-python todo.py
+python3 todo.py
 
 # 各指令範例
-python todo.py add "買牛奶"
-python todo.py list
-python todo.py done 1
-python todo.py delete 1
-python todo.py search "牛奶"
-python todo.py stats
-python todo.py edit 1 "新內容"
+python3 todo.py add "買牛奶"
+python3 todo.py list
+python3 todo.py done 1
+python3 todo.py delete 1
+python3 todo.py search "牛奶"
+python3 todo.py stats
+python3 todo.py edit 1 "新內容"
 ```
 
 ## 架構說明

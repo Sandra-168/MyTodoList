@@ -27,7 +27,12 @@ def save_todos(data):
 
 def add_todo(text):
     """Issue #1：新增一筆待辦事項。"""
-    pass
+    data = load_todos()
+    new_id = data["next_id"]
+    data["todos"].append({"id": new_id, "text": text, "done": False})
+    data["next_id"] = new_id + 1
+    save_todos(data)
+    print(f"已新增待辦事項 [{new_id}] {text}")
 
 
 def list_todos():

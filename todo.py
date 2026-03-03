@@ -1,6 +1,8 @@
 import sys
 import json
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 TODOS_FILE = "todos.json"
 
 
@@ -8,7 +10,11 @@ TODOS_FILE = "todos.json"
 
 def load_todos():
     """讀取 todos.json，回傳資料 dict。若檔案不存在則回傳初始結構。"""
-    pass
+    try:
+        with open(TODOS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"next_id": 1, "todos": []}
 
 
 def save_todos(data):
@@ -25,7 +31,16 @@ def add_todo(text):
 
 def list_todos():
     """Issue #2：列出所有待辦事項。"""
-    pass
+    data = load_todos()
+    todos = data["todos"]
+
+    if not todos:
+        print("目前沒有任何待辦事項。")
+        return
+
+    for todo in todos:
+        status = "V" if todo["done"] else " "
+        print(f"[{status}] {todo['id']}. {todo['text']}")
 
 
 def mark_done(todo_id):

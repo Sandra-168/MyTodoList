@@ -8,12 +8,17 @@ TODOS_FILE = "todos.json"
 
 def load_todos():
     """讀取 todos.json，回傳資料 dict。若檔案不存在則回傳初始結構。"""
-    pass
+    try:
+        with open(TODOS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"next_id": 1, "todos": []}
 
 
 def save_todos(data):
     """將資料 dict 寫入 todos.json。"""
-    pass
+    with open(TODOS_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 # === 指令功能 ===
@@ -30,12 +35,26 @@ def list_todos():
 
 def mark_done(todo_id):
     """Issue #3：將指定 ID 的待辦事項標記為完成。"""
-    pass
+    data = load_todos()
+    for todo in data["todos"]:
+        if todo["id"] == todo_id:
+            todo["done"] = True
+            save_todos(data)
+            print(f"已將 [{todo['id']}] {todo['text']} 標記為完成")
+            return
+    print(f"找不到編號 {todo_id} 的待辦事項")
 
 
 def delete_todo(todo_id):
     """Issue #4：刪除指定 ID 的待辦事項。"""
-    pass
+    data = load_todos()
+    for todo in data["todos"]:
+        if todo["id"] == todo_id:
+            data["todos"].remove(todo)
+            save_todos(data)
+            print(f"已刪除 [{todo['id']}] {todo['text']}")
+            return
+    print(f"找不到編號 {todo_id} 的待辦事項")
 
 
 def search_todos(keyword):

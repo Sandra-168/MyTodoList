@@ -35,7 +35,14 @@ def list_todos():
 
 def mark_done(todo_id):
     """Issue #3：將指定 ID 的待辦事項標記為完成。"""
-    pass
+    data = load_todos()
+    for todo in data["todos"]:
+        if todo["id"] == todo_id:
+            todo["done"] = True
+            save_todos(data)
+            print(f"已將 [{todo['id']}] {todo['text']} 標記為完成")
+            return
+    print(f"找不到編號 {todo_id} 的待辦事項")
 
 
 def delete_todo(todo_id):

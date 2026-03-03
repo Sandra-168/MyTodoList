@@ -68,15 +68,29 @@ def show_stats():
 
 
 def edit_todo(todo_id, new_text):
-    """Issue #7：編輯指定 ID 的待辦事項內容。"""
+    """Issue #7 : 編輯指定 ID 的待辦事項內容。"""
+    
+    # 1. 基本檢查：確保新文字不是空的或只有空格
+    clean_text = new_text.strip()
+    if not clean_text:
+        print("❌ 錯誤：待辦內容不能為空！")
+        return
+
     data = load_todos()
+    found = False
+
     for todo in data["todos"]:
-        if todo["id"] == todo_id:
-            todo["text"] = new_text
-            save_todos(data)
-            print(f"[已更新] #{todo_id}：{new_text}")
-            return
-    print(f"找不到 ID 為 {todo_id} 的待辦事項")
+        # 2. 型別強化：將兩者都轉為字串比對，避免 int/str 類型不符的問題
+        if str(todo["id"]) == str(todo_id):
+            todo["text"] = clean_text
+            found = True
+            break # 找到後就跳出迴圈
+
+    if found:
+        save_todos(data)
+        print(f"✅ [已更新] #{todo_id} : {clean_text}")
+    else:
+        print(f"⚠️ 找不到 ID 為 {todo_id} 的待辦事項")
 
 
 # === CLI 入口 ===

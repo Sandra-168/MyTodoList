@@ -64,12 +64,42 @@ def search_todos(keyword):
 
 def show_stats():
     """Issue #6：顯示待辦事項統計資訊。"""
-    pass
+    data = load_todos()
+    todos = data["todos"]
+    total = len(todos)
+    done = sum(1 for t in todos if t["done"])
+    pending = total - done
+    rate = (done / total * 100) if total > 0 else 0
+    print(f"總數：{total}")
+    print(f"已完成：{done}")
+    print(f"未完成：{pending}")
+    print(f"完成率：{rate:.1f}%")
 
 
 def edit_todo(todo_id, new_text):
-    """Issue #7：編輯指定 ID 的待辦事項內容。"""
-    pass
+    """Issue #7 : 編輯指定 ID 的待辦事項內容。"""
+    
+    # 1. 基本檢查：確保新文字不是空的或只有空格
+    clean_text = new_text.strip()
+    if not clean_text:
+        print("❌ 錯誤：待辦內容不能為空！")
+        return
+
+    data = load_todos()
+    found = False
+
+    for todo in data["todos"]:
+        # 2. 型別強化：將兩者都轉為字串比對，避免 int/str 類型不符的問題
+        if str(todo["id"]) == str(todo_id):
+            todo["text"] = clean_text
+            found = True
+            break # 找到後就跳出迴圈
+
+    if found:
+        save_todos(data)
+        print(f"✅ [已更新] #{todo_id} : {clean_text}")
+    else:
+        print(f"⚠️ 找不到 ID 為 {todo_id} 的待辦事項")
 
 
 # === CLI 入口 ===

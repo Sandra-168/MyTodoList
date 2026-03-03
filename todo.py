@@ -1,6 +1,8 @@
 import sys
 import json
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 TODOS_FILE = "todos.json"
 
 
@@ -30,7 +32,16 @@ def add_todo(text):
 
 def list_todos():
     """Issue #2：列出所有待辦事項。"""
-    pass
+    data = load_todos()
+    todos = data["todos"]
+
+    if not todos:
+        print("目前沒有任何待辦事項。")
+        return
+
+    for todo in todos:
+        status = "V" if todo["done"] else " "
+        print(f"[{status}] {todo['id']}. {todo['text']}")
 
 
 def mark_done(todo_id):

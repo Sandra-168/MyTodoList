@@ -8,11 +8,7 @@ TODOS_FILE = "todos.json"
 
 def load_todos():
     """讀取 todos.json，回傳資料 dict。若檔案不存在則回傳初始結構。"""
-    try:
-        with open(TODOS_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {"next_id": 1, "todos": []}
+    pass
 
 
 def save_todos(data):

@@ -75,7 +75,14 @@ def delete_todo(todo_id):
 
 def search_todos(keyword):
     """Issue #5：搜尋包含關鍵字的待辦事項。"""
-    pass
+    data = load_todos()
+    results = [t for t in data["todos"] if keyword in t["text"]]
+    if not results:
+        print("找不到符合的待辦事項")
+        return
+    for t in results:
+        status = "✅" if t["done"] else "⬜"
+        print(f"[{t['id']}] {status} {t['text']}")
 
 
 def show_stats():
